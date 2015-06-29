@@ -20,9 +20,10 @@
     $connection = new SQLConnector($cred);
     $connection->connect();
     
-    $user = $_COOKIE['username'];
-    $query = "select profilepic from users where user=$user"; //this kind of assumes user is the primary key, could rework with email
-    $profpic = $this->connector->retrieve($query);
+    //$user = $_COOKIE['username'];
+    $user = "test";
+    $query = "select profilepic from users where name=\"$user\""; //this kind of assumes user is the primary key, could rework with email
+    $profpic = $connection->retrieve($query);
     
     //insert logo here, float left the month/year? float right the profile info so it's in the upper right corner
     //could make icon graphics for edit and upload
