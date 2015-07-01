@@ -5,10 +5,10 @@
   if (isset($_POST["Login"])) {
 	 //Change user,password,database, and table with correct ones//
 	 $host = "localhost";
-	 $user = "dbuser";
-	 $password = "goodbyeWorld";
-	 $database = "Users";
-	 $table = "usernames";
+	 $user = "user";
+	 $password = "user";
+	 $database = "calendapp";
+	 $table = "users";
 	 $db = connectToDB($host, $user, $password, $database);
      
 	 //Change salt after we know how the password is stored//
@@ -63,7 +63,7 @@
 	<body>    
         <header>
         <div class = "container">  
-        <img id = logo src="CalendAppLogo.png" alt="CalendApp Logo" /></br>
+        <img id = logo src="img/CalendAppLogo.png" alt="CalendApp Logo" /></br>
         </header>
 		</div>
         

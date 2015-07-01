@@ -30,7 +30,7 @@
     //should probably include a logout button somewhere
     $body =<<<HEREDOC
         
-        <a href="main.php"> <img src="logo.png" alt="CalendApp"> </a>
+        <a href="main.php"> <img src="img/CalendAppLogo.png" width="256" height="73" alt="CalendApp"> </a>
         <span id="calendarTitle">
             <h1>$month $year</h1>
         </span>
