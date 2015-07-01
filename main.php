@@ -4,7 +4,7 @@
     include_once("dbLogin.php");
     include_once("sqlconnector.php");
 
-    if(isSet($_POST['submitButton'])){
+    if(isset($_POST['submitButton'])){
         
         $month = $_POST['month'];
         $year = $_POST['year'];
@@ -44,24 +44,24 @@
         <span id="sidebar">
             <form action="main.php" method="post">
                 <select name="month">
-                    <option value="January">
-                    <option value="February">
-                    <option value="March">
-                    <option value="April">
-                    <option value="May">
-                    <option value="June">
-                    <option value="July">
-                    <option value="August">
-                    <option value="September">
-                    <option value="October">
-                    <option value="November">
-                    <option value="December">
+                    <option value="January">January
+                    <option value="February">February
+                    <option value="March">March
+                    <option value="April">April
+                    <option value="May">May
+                    <option value="June">June
+                    <option value="July">July
+                    <option value="August">August
+                    <option value="September">September
+                    <option value="October">October
+                    <option value="November">November
+                    <option value="December">December
                 </select>
                 <select name="year">
 HEREDOC;
                 
                 for($i=2012; $i<date("Y"); $i++){
-                    $body.='<option value='.$i.'>';
+                    $body.='<option value='.$i.'>'.$i;
                 }
                 
                 $week = array('Sunday'=>0, 'Monday'=>1, 'Tuesday'=>2, 'Wednesday'=>3, 'Thursday'=>4, 'Friday'=>5, 'Saturday'=>6);
@@ -74,20 +74,21 @@ HEREDOC;
         <table id="calendar">
 HEREDOC;
                 
-                foreach($week as $day){
+                foreach($week as $day=>$offset){
                     $body.="<th>".$day."</th>";
                 }
                 
                 $body.='<tr>';
                 $counter = 0;
                 
-                $dayOffset = $week[date('l', strtotime($month.' 1'.$year))];
+                $dayOffset = $week[date('l', strtotime($month.' 1'.$year))] -1;
                 
                 for($i=0; $i<$dayOffset; $i++){
                     $body.="<td class='offset'></td>";
                     $counter++;
                 }
-            
+                
+                
                 $days = cal_days_in_month(CAL_GREGORIAN, date('n', strtotime($month)), $year);
                 
                 for($i=1; $i <= $days; $i++){
@@ -96,6 +97,7 @@ HEREDOC;
                         $body.="</tr><tr>";
                    }
                    
+                   $counter++;
                    $body.="<td>".$i."</td>";
                    
                 }
