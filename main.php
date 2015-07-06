@@ -81,7 +81,7 @@ HEREDOC;
                 $body.='<tr>';
                 $counter = 0;
                 
-                $dayOffset = $week[date('l', strtotime($month.' 1'.$year))] -1;
+                $dayOffset = $week[date('l', strtotime($month.' 1 '.$year))];
                 
                 for($i=0; $i<$dayOffset; $i++){
                     $body.="<td class='offset'></td>";
