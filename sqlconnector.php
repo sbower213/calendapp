@@ -48,7 +48,7 @@
 					if ($num_rows === 1) {
 						$result->data_seek(0);
 						$row = $result->fetch_array(MYSQLI_ASSOC);
-					} else { //only used by admin panel
+					} else {
 						for ($row_index = 0; $row_index < $num_rows; $row_index++) {
 							$result->data_seek($row_index);
 							$row[$row_index] = $result->fetch_array(MYSQLI_ASSOC);
