@@ -8,24 +8,25 @@
   if (isset($_POST["Login"])) {
 	 //Change user,password,database, and table with correct ones//
 	 $host = "localhost";
-	 $user = "user";
-	 $password = "user";
+	 $dbuser = "user";
+	 $dbpassword = "user";
 	 $database = "calendapp";
 	 $table = "users";
-	 $connector = new SQLConnector(new Credentials($host, $user, $password, $database));
+	 $connector = new SQLConnector(new Credentials($host, $dbuser, $dbpassword, $database));
 	 $connector->connect();
      
 	 //Change salt after we know how the password is stored//
 	 $username = trim($_POST["username"]);
-	 $password = $_POST["password"];
 	 
-	 $sqlQuery = sprintf("select name from %s where name='%s'", $table, $username);
+	 $sqlQuery = sprintf("select name, password from %s where name='%s'", $table, $username);
 	 
 	 if (!($result = $connector->retrieve($sqlQuery))) {
 		echo "Whoops! Seems like you haven't signed up yet! Click below to sign up! (username not found)";
 	 } else {
-		if (password_verify($password, $result['password'])) {
+		if (password_verify($_POST['password'], $result['password'])) {
 		  echo "Logged in!";
+		  $_SESSION['loggedIn'] = true; //Stay logged in
+		  $_SESSION['username'] = $username;
 		} else {
 		  echo "Wrong password!";
 		}
