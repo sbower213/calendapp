@@ -34,13 +34,13 @@
         <span id="calendarTitle">
             <h1>$month $year</h1>
         </span>
-        <div id="profile>
+        <div id="profile">
             <img src=$profpic alt=$user>
             Hello, $user!
             <br />
             <a href='profile.php'>Edit Profile</a> 
             <a href='upload.php'>Upload Photo</a>
-        </span>
+        </div>
         <span id="sidebar">
             <form action="main.php" method="post">
                 <select name="month">
@@ -60,7 +60,7 @@
                 <select name="year">
 HEREDOC;
                 
-                for($i=2012; $i<date("Y"); $i++){
+                for($i=2012; $i<=date("Y"); $i++){
                     $body.='<option value='.$i.'>'.$i;
                 }
                 
@@ -98,7 +98,7 @@ HEREDOC;
                    }
                    
                    $counter++;
-                   $body.="<td>".$i."</td>";
+                   $body.="<td id=$i>".$i."</td>";
                    
                 }
                 
@@ -110,6 +110,19 @@ HEREDOC;
                 
                 $body.="</tr></table>";
                 
+    $body.=<<<HEREDOC
+        <script>
+            $(document).ready(main);
+            
+            function main(){
+                $(td).hover(showPhotos);
+            }
+            
+            function showPhotos(){
+                $(this).css("width", "200%"); //this isn't done yet
+            }
+        </script>
+HEREDOC;
 
     echo generatePage($body);
 ?>
