@@ -89,10 +89,10 @@
 
         echo "<form action='$scriptName' method='post'>
 			<p>
-                <input type='text' placeholder='Username' name='username' value ='$username'/>
-                <input type='password' placeholder='Password' name='password' value ='$password'/>
+                <input type='text' placeholder='Username' required='required' name='username' value ='$username'/>
+                <input type='password' placeholder='Password' required='required' name='password' value ='$password'/>
 				";
-				if (isset($warning)) {
+				if (isset($warning)) { //Print warning
 				  echo "<br />".$warning;
 				}
                 echo "</br>
@@ -107,6 +107,5 @@
 		</form>";
         ?>
         </div>
-        
    </body>
 </html>

@@ -3,7 +3,8 @@
     require_once("uploadimage.php");
 	require_once("dbLogin.php");
     
-    $body =<<<BODY
+    //$body =<<<BODY
+	?>
      <form action="uploadtest.php" enctype="multipart/form-data" method="post">
       <p>
    	     <b>Enter image to upload: </b>
@@ -12,8 +13,8 @@
       </p>
       
       </form>
-BODY;
 
+<?php
     echo generatePage($body);
 	$iw = new ImageWorker(new Credentials("localhost", "user", "user", "calendapp"));
 	
