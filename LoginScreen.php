@@ -48,9 +48,8 @@
 				}
 		  }
 	 } */
-  } if (isset($_POST["Sign Up"])) {
+  } elseif (isset($_POST["signup"])) {
 	 echo "Sign up";
-     //header('Location: signUp.php');
   }
   
   /**********************************************************************/
@@ -93,11 +92,11 @@
                 </br>
                 </br>
 			
-                <input id = login type='submit' name = 'Login' value = 'Login'/>
+                <input id = 'login' type='submit' name = 'Login' value = 'Login'/>
                 </br>
                 </br>
 				<p>New to CalendApp? Sign Up today!</p>
-				<input id='sign' type='submit' name='Sign Up' value='Sign Up' />           
+				<input id= 'sign' type='submit' name='signup' value='Sign Up' />           
 			</p></br>
 		</form>";
         ?>
