@@ -14,21 +14,22 @@
 	 $table = "users";
 	 $connector = new SQLConnector(new Credentials($host, $dbuser, $dbpassword, $database));
 	 $connector->connect();
-     
-	 //Change salt after we know how the password is stored//
-	 $username = trim($_POST["username"]);
+	 $warning = "";
 	 
+	 $username = trim($_POST["username"]);
 	 $sqlQuery = sprintf("select name, password from %s where name='%s'", $table, $username);
 	 
 	 if (!($result = $connector->retrieve($sqlQuery))) {
-		echo "Whoops! Seems like you haven't signed up yet! Click below to sign up! (username not found)";
+		$warning = "Whoops! Seems like you haven't signed up yet! Click below to sign up! (username not found)";
 	 } else {
 		if (password_verify($_POST['password'], $result['password'])) {
-		  echo "Logged in!";
+		  $warning = "Logged in!";
 		  $_SESSION['loggedIn'] = true; //Stay logged in
 		  $_SESSION['username'] = $username;
+		  
+		  header("Location: main.php");
 		} else {
-		  echo "Wrong password!";
+		  $warning = "Wrong password!";
 		}
 	 }
 	 
@@ -50,6 +51,7 @@
 	 } */
   } elseif (isset($_POST["signup"])) {
 	 echo "Sign up";
+	 header("Location: signup.php");
   }
   
   /**********************************************************************/
@@ -84,12 +86,16 @@
         $scriptName = $_SERVER["PHP_SELF"];
         $username = "";
         $password = "";
-        
+
         echo "<form action='$scriptName' method='post'>
 			<p>
                 <input type='text' placeholder='Username' name='username' value ='$username'/>
                 <input type='password' placeholder='Password' name='password' value ='$password'/>
-                </br>
+				";
+				if (isset($warning)) {
+				  echo "<br />".$warning;
+				}
+                echo "</br>
                 </br>
 			
                 <input id = 'login' type='submit' name = 'Login' value = 'Login'/>
