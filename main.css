@@ -1,0 +1,77 @@
+html {
+    background-image: url('img/umdbg.jpg');
+    background-size: 2000px;
+    font-family:  'Open Sans', Arial, Helvetice Neue, sans-serif;
+    bottom: auto;
+}
+body {
+    color:#707070;
+}
+#calendar{
+    float: right;
+    background-color: white;
+    border-radius: 10px;
+    border-width: 1px;
+    border: solid;
+    border-color: #194775;
+    height: 600px;
+    width: 1500px;
+    opacity: 0.8;
+    
+}
+#profile {
+    margin-left: 20px;
+    color: white;
+}
+
+td {
+    background-color: #222222;  
+    border-radius: 10px;
+    border-width: 1px;
+    border: solid;
+    border-color: #194775;
+    padding: 20px;
+    opacity: 0.8;
+    height: 180px;
+    width: 280px;
+}
+td:hover {
+    height:300px;
+    width: auto;
+}
+
+#side {
+    /*margin-left: 20px;
+    margin-top: 10px;*/
+    border-radius: 10px;
+    border-width: 1px;
+    border: solid;
+    padding: 5px;
+    background-color: #005C8A;
+    opacity: 0.8;
+    z-index: 0;
+    position: relative;
+}
+
+h1 {
+    float: right;
+    margin-right: 90px;
+    color: white;
+    font-family: 'Lobster', Open Sans;
+    font-size: 9em;
+    margin-top: -10px;
+    margin-bottom: -35px;
+    z-index: 1;
+    position:relative;
+}
+
+
+h2 {
+ float: right;
+ font-weight: lighter;
+ color: white;
+ margin-right: 980px;
+ font-size: 2em;
+ margin-top: -60px;
+ 
+}
