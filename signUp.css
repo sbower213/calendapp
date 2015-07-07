@@ -18,19 +18,23 @@ body {
     border-width: 1px;
     border: solid;
     border-color: #194775;
-    float: left;
     padding: 20px;
-    margin-left: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
     text-align: center;
-    width: 330px;
+    width: 20em;
+    z-index: 0;
 }
 #title {
     width: 500px;
     height: 200px;
     text-align: center;
-    margin-left: 710px;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: -50px;
     margin-top: 10px;
+    position: relative;
 }
 #title img {
     width: 100%;
@@ -53,9 +57,11 @@ input {
 #subtitle {
     width: 300px;
     height: 100px;
-    text-align: center;
-    margin-left: 800px;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: -50px;
+    position: relative;
+    z-index: 1;
 }
 #subtitle img {
     width: 100%;
