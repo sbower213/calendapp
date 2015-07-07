@@ -32,6 +32,8 @@
     //insert logo here, float left the month/year? float right the profile info so it's in the upper right corner
     //could make icon graphics for edit and upload
     //should probably include a logout button somewhere
+
+    
     $body =<<<HEREDOC
         
         <a href="main.php"> <img src="img/CalendAppLogo.png" width="256" height="73" alt="CalendApp"> </a>
@@ -48,24 +50,31 @@
         <span id="sidebar">
             <form action="main.php" method="post">
                 <select name="month">
-                    <option value="January">January
-                    <option value="February">February
-                    <option value="March">March
-                    <option value="April">April
-                    <option value="May">May
-                    <option value="June">June
-                    <option value="July">July
-                    <option value="August">August
-                    <option value="September">September
-                    <option value="October">October
-                    <option value="November">November
-                    <option value="December">December
-                </select>
-                <select name="year">
 HEREDOC;
+    $months = array("January", "February", "March", "April", "May", "June", "July",
+                "August", "September", "October", "November", "December");
+    
+    //Keeps current month selected
+    foreach ($months as $x) {
+        if ($x === $month) {
+            $body .= "<option value='$x' selected='selected'>$x";
+        } else {
+            $body .= "<option value='$x'>$x";
+        }
+    }
+                
+    $body .= "</select>
+                <select name='year'>";
                 
                 for($i=2012; $i<=date("Y"); $i++){
-                    $body.='<option value='.$i.'>'.$i;
+                    $body.='<option value='.$i;
+                    
+                    if ($i == $year) { //Keeps current year selected
+                        $body .= " selected='selected'>";
+                    } else {
+                        $body .= ">";
+                    }
+                    $body .= $i;
                 }
                 
                 $week = array('Sunday'=>0, 'Monday'=>1, 'Tuesday'=>2, 'Wednesday'=>3, 'Thursday'=>4, 'Friday'=>5, 'Saturday'=>6);
@@ -128,5 +137,5 @@ HEREDOC;
         </script>
 HEREDOC;
 
-    echo generatePage($body);
+    echo generatePage($body, "Calendapp");
 ?>
