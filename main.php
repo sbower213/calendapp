@@ -1,14 +1,17 @@
 <?php
-
-    include_once("support.php");
-    include_once("dbLogin.php");
-    include_once("sqlconnector.php");
     
+    //This needs to be added to main.php//
     echo "<link rel='stylesheet' href='main.css' type='text/css' />";
     echo "<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>";
     echo "<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>";
-    
-    
+    ////////////////////////////////////////////////////////////////////////////
+    //I commented some of these lines out because I couldn't see the page//
+   /////////////////////////////////////////////////////////////////////////////
+   
+    include_once("support.php");
+    //include_once("dbLogin.php");
+    //include_once("sqlconnector.php");
+
     if(isset($_POST['submitButton'])){
         
         $month = $_POST['month'];
@@ -21,33 +24,38 @@
         
     }
     
-    $cred = new Credentials("localhost", "user", "user", "calendapp"); //update these to real values once we make the db
-    $connection = new SQLConnector($cred);
-    $connection->connect();
+    //$cred = new Credentials("localhost", "user", "user", "calendapp"); //update these to real values once we make the db
+    //$connection = new SQLConnector($cred);
+    //$connection->connect();
     
     //$user = $_COOKIE['username'];
     $user = "test";
     $query = "select profilepic from users where name=\"$user\""; //this kind of assumes user is the primary key, could rework with email
-    $profpic = $connection->retrieve($query);
+    $profpic = 'default.jpg';
+    
     //insert logo here, float left the month/year? float right the profile info so it's in the upper right corner
     //could make icon graphics for edit and upload
     //should probably include a logout button somewhere
     $body =<<<HEREDOC
         
-        <a href="main.php"> <img src="img/CalendAppLogo.png" width="256" height="73" alt="CalendApp"> </a>
+        <a href="main.php"> <img src="img/CalendAppLogo.png" width="256" height="73" alt="CalendApp" id="logo"> </a>
         <span id="calendarTitle">
             <h1>$month $year</h1>
+            <h2>University of Maryland, College Park</h2>
         </span>
         <div id="profile">
-            <img src=$profpic[profilepic] alt=$user>
+            
+            
+            <img src=$profpic alt=$user width='50' height='50'>
+           
+           
             Hello, $user!
             <br />
             <a href='profile.php'>Edit Profile</a> 
             <a href='upload.php'>Upload Photo</a>
-            <a href='logout.php'>Logout</a>
         </div>
         <span id="sidebar">
-            <form action="main.php" method="post">
+            <form action="main.php" method="post" id="side">
                 <select name="month">
                     <option value="January">January
                     <option value="February">February
