@@ -7,7 +7,8 @@
     echo "<link rel='stylesheet' href='main.css' type='text/css' />";
     echo "<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>";
     echo "<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>";
-
+    
+    
     if(isset($_POST['submitButton'])){
         
         $month = $_POST['month'];
@@ -28,7 +29,6 @@
     $user = "test";
     $query = "select profilepic from users where name=\"$user\""; //this kind of assumes user is the primary key, could rework with email
     $profpic = $connection->retrieve($query);
-    
     //insert logo here, float left the month/year? float right the profile info so it's in the upper right corner
     //could make icon graphics for edit and upload
     //should probably include a logout button somewhere
@@ -39,11 +39,12 @@
             <h1>$month $year</h1>
         </span>
         <div id="profile">
-            <img src=$profpic alt=$user>
+            <img src=$profpic[profilepic] alt=$user>
             Hello, $user!
             <br />
             <a href='profile.php'>Edit Profile</a> 
             <a href='upload.php'>Upload Photo</a>
+            <a href='logout.php'>Logout</a>
         </div>
         <span id="sidebar">
             <form action="main.php" method="post">
