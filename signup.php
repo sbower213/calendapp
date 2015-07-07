@@ -3,6 +3,7 @@
     require_once("dbLogin.php");
     require_once("sqlconnector.php");
     
+    session_start();
     echo "Sign up (placeholder)<br />";
     
     if (isset($_POST['submit'])) {

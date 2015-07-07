@@ -1,9 +1,10 @@
 <?php
-
+    
     include_once("support.php");
     include_once("dbLogin.php");
     include_once("sqlconnector.php");
     
+    session_start();
     echo "<link rel='stylesheet' href='main.css' type='text/css' />";
     echo "<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>";
     echo "<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>";
@@ -24,8 +25,12 @@
     $connection = new SQLConnector($cred);
     $connection->connect();
     
-    //$user = $_COOKIE['username'];
-    $user = "test";
+    if (isset($_SESSION['username'])) {
+        $user = $_SESSION['username'];
+    } else {
+        $user = "test";
+    }
+    
     $query = "select profilepic from users where name=\"$user\""; //this kind of assumes user is the primary key, could rework with email
     $profpic = $connection->retrieve($query);
     
