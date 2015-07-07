@@ -3,6 +3,10 @@
     include_once("support.php");
     include_once("dbLogin.php");
     include_once("sqlconnector.php");
+    
+    echo "<link rel='stylesheet' href='main.css' type='text/css' />";
+    echo "<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>";
+    echo "<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>";
 
     if(isset($_POST['submitButton'])){
         
