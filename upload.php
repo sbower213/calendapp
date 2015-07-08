@@ -45,9 +45,12 @@ BODY;
 		$caption = $_POST['caption'];
 		
 		if ($id = $iw->uploadImage($username, $tags, $caption)) {
-			echo "Successful upload with id $id"; //Placeholder
+			//echo "Successful upload with id $id"; //Placeholder
+			echo "<script> alert('Successfully uploaded image!')</script>";
+			
+			header("Location: main.php");
 		} else {
-			echo "Unsuccessful upload";
+			echo "<script> alert('Upload failed.')</script>";
 		}
 	}
 ?>

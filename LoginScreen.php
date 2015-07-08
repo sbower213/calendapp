@@ -69,7 +69,7 @@
                 </br>
 				<p>New to CalendApp? Sign Up today!</p>
 				</form>
-				<form action='signup2.php' method='post'>
+				<form action='signup.php' method='post'>
 				<input id= 'sign' type='submit' name='signup' value='Sign Up' />
 				</form>
 			</p></br>

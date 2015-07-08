@@ -29,7 +29,7 @@
                 if (!move_uploaded_file($tmpFileName, SITE_ROOT.$serverFileName))
                     return false;
                 else { //Successful upload, add to db
-                    $query = "insert into photos (user, date, tags, caption, id) values('$user', '$date', '$tags', '$caption', '$id')";
+                    $query = "insert into photos (user, date, tags, caption, id) values('$user', '$date', '$tags', '$caption', '$id.$ext')";
                     $this->connector->insert($query);
                     return $id.".".$ext;
                 }

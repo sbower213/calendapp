@@ -82,6 +82,7 @@ HEREDOC;
     $body.=<<<HEREDOC
                 </select>
                 <input type='submit' name='submitButton' value='Go!'>
+                <input type='submit' name='thismonth' value='This Month'>
             </form>
         </span>
         <table id="calendar">
