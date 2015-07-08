@@ -27,11 +27,11 @@
     if (isset($_SESSION['username'])) {
         $user = $_SESSION['username'];
     } else {
-        $user = "test";
+        $user = "NO_USER";
     }
     
     $query = "select profilepic from users where name=\"$user\""; //this kind of assumes user is the primary key, could rework with email
-    $profpic = $connection->retrieve($query);
+    $profpic = "profilepics/".$connection->retrieve($query)['profilepic'];
     
     //insert logo here, float left the month/year? float right the profile info so it's in the upper right corner
     //could make icon graphics for edit and upload
@@ -44,7 +44,7 @@
             <h1>$month $year</h1>
         </span>
         <div id="profile">
-            <img src=$profpic[profilepic] alt=$user width='50' height='50'>
+            <img src='$profpic' alt=$user width='50' height='50'>
             Hello, $user!
             <br />
             <a href='profile.php'>Edit Profile</a> 

@@ -60,7 +60,7 @@
 					<p>
 						Username: $UserName</br><br>
 						Email: $UserEmail</br><br>
-						Profile Picture: <br><img src='$UserProPic' alt='photo' width='200' height='200'/></br>
+						Profile Picture: <br><img src='$UserProPic' alt='photo' id='profilepic'/></br>
 					</p>
 					</br>
 					<p>

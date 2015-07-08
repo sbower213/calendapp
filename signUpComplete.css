@@ -48,6 +48,10 @@ input {
       padding: 5px;
       margin-right: auto;
 }
+
+#profilepic {
+    max-width: 200px}
+    
 #sub {
     width: 800px;
     height: 400px;
@@ -59,3 +63,4 @@ input {
     width: 100%;
     height: auto;
 }
+
