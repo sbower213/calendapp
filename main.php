@@ -116,7 +116,7 @@ HEREDOC;
                    }
                    
                    $counter++;
-                   $body.="<td id=$i>".$i." ".getPics($pics, $i)."</td>"; //Day added here
+                   $body.="<td><div id=$i>".$i."<br />".getPics($pics, $i)."</div></td>"; //Day added here
                    
                 }
                 
@@ -133,11 +133,14 @@ HEREDOC;
             $(document).ready(main);
             
             function main(){
-                $(td).hover(showPhotos);
-            }
-            
-            function showPhotos(){
-                $(this).css("width", "200%"); //this isn't done yet
+                $("td").click(function(){
+                
+                    if($(this).find(".hiddenSpan").css("visibility") == "hidden") { 
+                        $(this).find(".hiddenSpan").css("visibility", "visible");
+                    } else {
+                        $(this).find(".hiddenSpan").css("visibility", "hidden");
+                    }
+                });
             }
         </script>
 HEREDOC;
@@ -155,17 +158,23 @@ HEREDOC;
             foreach ($arr as $entry) {
                 if (date('j', strtotime($entry['date'])) == $dayOfMonth) {
                     $toReturn .= "<img src='images/{$entry['id']}' alt='{$entry['id']}' width='40' height='40'>
-                        <span class='imgtext'>by {$entry['user']}<span id='hidden$dayOfMonth' hidden='true'><br />
-                        Caption: {$entry['caption']}<br />
-                        Tags: {$entry['tags']}</span></span>"."<br />";
+                        <span class='imgtext'>by {$entry['user']} <br /><br />
+                            <div id='hidden$dayOfMonth' class='hiddenSpan' width='400' height='400'><br />
+                            <img src='images/{$entry['id']}' alt='{$entry['id']}' class='userPhotoFull' >
+                            Caption: {$entry['caption']}<br />
+                            Tags: {$entry['tags']}</div>
+                        </span>"."<br />";
                 }
             }
         } else {
             if (date('j', strtotime($arr['date'])) == $dayOfMonth) {
-                    $toReturn .= "<img src='images/{$arr['id']}' alt='{$arr['id']}' width='40' height='40'>
-                        <span class='imgtext'>by {$arr['user']}<span id='hidden$dayOfMonth' hidden='true'><br />
-                        Caption: {$arr['caption']}<br />
-                        Tags: {$arr['tags']}</span></span>"."<br />";
+                    $toReturn .= "<img src='images/{$arr['id']}' alt='{$arr['id']}' width='40' height='40' class='userPhoto'>
+                        <span class='imgtext'>by {$arr['user']} <br /><br />
+                            <span id='hidden$dayOfMonth' class='hiddenSpan' width='400' height='400'><br />
+                            <img src='images/{$arr['id']}' alt='{$arr['id']}' class='userPhotoFull'>
+                            Caption: {$arr['caption']}<br />
+                            Tags: {$arr['tags']}</span>
+                        </span>"."<br />";
                 }
         }
         
