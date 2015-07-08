@@ -7,8 +7,7 @@ html {
 
 body {
     margin: -10px;
-    background-color: #1A1A1A;
-    opacity: 0.8;
+    background-color: rgba(26, 26, 26, .8);
     color: white;
     font-weight: lighter;
 }
@@ -48,10 +47,6 @@ input {
       padding: 5px;
       margin-right: auto;
 }
-
-#profilepic {
-    max-width: 200px}
-    
 #sub {
     width: 800px;
     height: 400px;
@@ -63,4 +58,3 @@ input {
     width: 100%;
     height: auto;
 }
-
