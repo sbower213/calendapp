@@ -10,7 +10,8 @@ body {
 #calendar{
     margin-left: auto;
     margin-right: auto;
-    position: relative;
+    position: relative; 
+    float: right;
     background-color: white;
     border-radius: 10px;
     border-width: 1px;
@@ -76,4 +77,15 @@ h2 {
  font-size: 2em;
  margin-top: -60px;
  
+}
+a:link {
+    color: #E6E6E6;
+}
+a:visited {
+    color: #C1DAE6;
+}
+a {
+    text-decoration: underline;
+    font-weight: bold;
+    padding: 10px;
 }
