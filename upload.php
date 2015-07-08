@@ -64,9 +64,10 @@ BODY;
 <script>
 	window.onsubmit = validateForm;
 	
+	//At least 2 tags
 	function validateForm() {
 		var tags = document.getElementById("tags").value;
-		var re = /,\s\w|,\w/;
+		var re = /,\s\w|,\w/; //comma followed by a space then any character, or comma followed by any character (no space)
 		
 		if (!re.test(tags)) {
 			alert("Please enter at least two tags.");

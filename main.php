@@ -140,14 +140,22 @@ HEREDOC;
         if (!isset($arr['user'])) {
             foreach ($arr as $entry) {
                 if (date('j', strtotime($entry['date'])) == $dayOfMonth) {
-                    $toReturn .= "<a href='imgshow.php?img=images/{$entry['id']}&caption={$entry['caption']}&tags={$entry['tags']}&user={$entry['user']}'><img src='images/{$entry['id']}' alt='{$entry['id']}' width='40' height='40' class='userPhoto'></a>
+                    $escEntry = htmlspecialchars($entry['id'], ENT_QUOTES);
+                    $escCaption = htmlspecialchars($entry['caption'], ENT_QUOTES);
+                    $escTags = htmlspecialchars($entry['tags'], ENT_QUOTES);
+                    
+                    $toReturn .= "<a href='imgshow.php?img=images/$escEntry&caption=$escCaption&tags=$escTags&user={$entry['user']}'><img src='images/{$entry['id']}' alt='{$entry['id']}' width='40' height='40' class='userPhoto'></a>
                         <span class='imgtext'>by {$entry['user']} <br /><br />
                         </span>"."<br />";
                 }
             }
         } else {
             if (date('j', strtotime($arr['date'])) == $dayOfMonth) {
-                    $toReturn .= "<a href='imgshow.php?img=images/{$arr['id']}&caption={$arr['caption']}&tags={$arr['tags']}&user={$arr['user']}'><img src='images/{$arr['id']}' alt='{$arr['id']}' width='40' height='40' class='userPhoto'></a>
+                $escEntry = htmlspecialchars($arr['id'], ENT_QUOTES);
+                    $escCaption = htmlspecialchars($arr['caption'], ENT_QUOTES);
+                    $escTags = htmlspecialchars($arr['tags'], ENT_QUOTES);
+                    
+                    $toReturn .= "<a href='imgshow.php?img=images/$escEntry&caption=$escCaption&tags=$escTags&user={$arr['user']}'><img src='images/{$arr['id']}' alt='{$arr['id']}' width='40' height='40' class='userPhoto'></a>
                         <span class='imgtext'>by {$arr['user']} <br /><br />
                         </span>"."<br />";
                 }
