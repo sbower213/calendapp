@@ -92,58 +92,41 @@ HEREDOC;
         <table id="calendar">
 HEREDOC;
                 
-                foreach($week as $day=>$offset){
-                    $body.="<th>".$day."</th>";
-                }
-                
-                $body.='<tr>';
-                $counter = 0;
-                
-                $dayOffset = $week[date('l', strtotime($month.' 1 '.$year))];
-                
-                for($i=0; $i<$dayOffset; $i++){
-                    $body.="<td class='offset'></td>";
-                    $counter++;
-                }
-                
-                
-                $days = cal_days_in_month(CAL_GREGORIAN, date('n', strtotime($month)), $year);
-                
-                for($i=1; $i <= $days; $i++){
-                   
-                   if($counter % 7 == 0) {
-                        $body.="</tr><tr>";
-                   }
-                   
-                   $counter++;
-                   $body.="<td><div id=$i>".$i."<br />".getPics($pics, $i)."</div></td>"; //Day added here
-                   
-                }
-                
-                //finish rendering calendar
-                while($counter % 7 != 0) {
-                    $body.="<td class='offset'></td>";
-                    $counter++;
-                }
-                
-                $body.="</tr></table>";
-                
-    $body.=<<<HEREDOC
-        <script>
-            $(document).ready(main);
-            
-            function main(){
-                $("td").click(function(){
-                
-                    if($(this).find(".hiddenSpan").css("visibility") == "hidden") { 
-                        $(this).find(".hiddenSpan").css("visibility", "visible");
-                    } else {
-                        $(this).find(".hiddenSpan").css("visibility", "hidden");
-                    }
-                });
-            }
-        </script>
-HEREDOC;
+    foreach($week as $day=>$offset){
+        $body.="<th>".$day."</th>";
+    }
+    
+    $body.='<tr>';
+    $counter = 0;
+    
+    $dayOffset = $week[date('l', strtotime($month.' 1 '.$year))];
+    
+    for($i=0; $i<$dayOffset; $i++){
+        $body.="<td class='offset'></td>";
+        $counter++;
+    }
+    
+    
+    $days = cal_days_in_month(CAL_GREGORIAN, date('n', strtotime($month)), $year);
+    
+    for($i=1; $i <= $days; $i++){
+       
+       if($counter % 7 == 0) {
+            $body.="</tr><tr>";
+       }
+       
+       $counter++;
+       $body.="<td><div id=$i>".$i."<br />".getPics($pics, $i)."</div></td>"; //Day added here
+       
+    }
+    
+    //finish rendering calendar
+    while($counter % 7 != 0) {
+        $body.="<td class='offset'></td>";
+        $counter++;
+    }
+    
+    $body.="</tr></table>";
 
     echo generatePage($body, "Calendapp");
     
@@ -157,23 +140,15 @@ HEREDOC;
         if (!isset($arr['user'])) {
             foreach ($arr as $entry) {
                 if (date('j', strtotime($entry['date'])) == $dayOfMonth) {
-                    $toReturn .= "<img src='images/{$entry['id']}' alt='{$entry['id']}' width='40' height='40'>
+                    $toReturn .= "<a href='imgshow.php?img=images/{$entry['id']}&caption={$entry['caption']}&tags={$entry['tags']}&user={$entry['user']}'><img src='images/{$entry['id']}' alt='{$entry['id']}' width='40' height='40' class='userPhoto'></a>
                         <span class='imgtext'>by {$entry['user']} <br /><br />
-                            <div id='hidden$dayOfMonth' class='hiddenSpan' width='400' height='400'><br />
-                            <img src='images/{$entry['id']}' alt='{$entry['id']}' class='userPhotoFull' >
-                            Caption: {$entry['caption']}<br />
-                            Tags: {$entry['tags']}</div>
                         </span>"."<br />";
                 }
             }
         } else {
             if (date('j', strtotime($arr['date'])) == $dayOfMonth) {
-                    $toReturn .= "<img src='images/{$arr['id']}' alt='{$arr['id']}' width='40' height='40' class='userPhoto'>
+                    $toReturn .= "<a href='imgshow.php?img=images/{$arr['id']}&caption={$arr['caption']}&tags={$arr['tags']}&user={$arr['user']}'><img src='images/{$arr['id']}' alt='{$arr['id']}' width='40' height='40' class='userPhoto'></a>
                         <span class='imgtext'>by {$arr['user']} <br /><br />
-                            <span id='hidden$dayOfMonth' class='hiddenSpan' width='400' height='400'><br />
-                            <img src='images/{$arr['id']}' alt='{$arr['id']}' class='userPhotoFull'>
-                            Caption: {$arr['caption']}<br />
-                            Tags: {$arr['tags']}</span>
                         </span>"."<br />";
                 }
         }
