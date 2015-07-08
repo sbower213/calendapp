@@ -7,8 +7,7 @@ html {
 
 body {
     margin: -10px;
-    background-color: #1A1A1A;
-    opacity: 0.8;
+    background-color: rgba(26, 26, 26, .8);
     color: white;
     font-weight: lighter;
 }
@@ -40,6 +39,7 @@ body {
 }
 #propic {
     max-height: 400px
+    opacity: 2;
 }
 h1 {
     float: right;
