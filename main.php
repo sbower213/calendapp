@@ -33,10 +33,6 @@
     $query = "select profilepic from users where name=\"$user\""; //this kind of assumes user is the primary key, could rework with email
     $profpic = "profilepics/".$connection->retrieve($query)['profilepic'];
     
-    //insert logo here, float left the month/year? float right the profile info so it's in the upper right corner
-    //could make icon graphics for edit and upload
-    //should probably include a logout button somewhere
-    
     $body =<<<HEREDOC
         
         <a href="main.php"> <img src="img/CalendAppLogo.png" width="256" height="73" alt="CalendApp" id="logo"> </a>

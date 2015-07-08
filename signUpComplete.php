@@ -4,7 +4,7 @@
     include_once("sqlconnector.php");
 	echo "<link rel='stylesheet' href='signUpComplete.css' type='text/css' />";
 	session_start();
-    //error_reporting(0);
+    error_reporting(0);
 	
     $body = "";
     $host = "localhost";
@@ -21,7 +21,7 @@
 	$UserProPic = $connector->retrieve("select profilepic from users where email='$UserEmail'")['profilepic'];
 
 	if ($UserProPic == null) {
-		$UserProPic = 'default.jpg';
+		$UserProPic = 'img/default.jpg';
 	} else {
 		$UserProPic = "profilepics/".$UserProPic;
 	}

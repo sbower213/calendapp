@@ -5,7 +5,7 @@
     echo "<link rel='stylesheet' href='signUp.css' type='text/css' />";
    
     session_start();
-    //error_reporting(0);
+    error_reporting(0);
 	
     if (isset($_POST["Submit"])) {
         if ( $_POST['password'] !== $_POST['vpassword']) {
@@ -42,10 +42,10 @@
 		$email = "";
         $password = "";
         $vpassword = ""; 
-        $photo = 'default.jpg';
+        $photo = 'img/default.jpg';
 		
     }
-     $photo = 'default.jpg';
+     $photo = 'img/default.jpg';
    /*************************************************************************/
     $scriptName = $_SERVER["PHP_SELF"];
     
