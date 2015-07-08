@@ -43,6 +43,7 @@
              </div>
              
              <form action='profile.php' enctype='multipart/form-data' method='post' id='form'>
+			 <h1>$CurrentUserName</h1>
                <img src='$ProPic' alt = 'Profile Picture' id='propic'/>
 			   <p>
                     Date Joined: $DateJoined
@@ -51,7 +52,7 @@
                      Upload New Profile Picture
                      <input type='file' name='filename'/><br /><input type='submit' name='submit' value='Upload'>
                   </p>
-               <h1>$CurrentUserName</h1>
+               
                   
              </form> 
            </body>
