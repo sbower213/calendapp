@@ -154,14 +154,18 @@ HEREDOC;
         if (!isset($arr['user'])) {
             foreach ($arr as $entry) {
                 if (date('j', strtotime($entry['date'])) == $dayOfMonth) {
-                    $toReturn .= "<img src='images/{$entry['id']}' alt='{$entry['id']}' width='20' height='20'>
-                        by {$entry['user']}"."<br />";
+                    $toReturn .= "<img src='images/{$entry['id']}' alt='{$entry['id']}' width='40' height='40'>
+                        <span class='imgtext'>by {$entry['user']}<span id='hidden$dayOfMonth' hidden='true'><br />
+                        Caption: {$entry['caption']}<br />
+                        Tags: {$entry['tags']}</span></span>"."<br />";
                 }
             }
         } else {
             if (date('j', strtotime($arr['date'])) == $dayOfMonth) {
                     $toReturn .= "<img src='images/{$arr['id']}' alt='{$arr['id']}' width='40' height='40'>
-                        by {$arr['user']}"."<br />";
+                        <span class='imgtext'>by {$arr['user']}<span id='hidden$dayOfMonth' hidden='true'><br />
+                        Caption: {$arr['caption']}<br />
+                        Tags: {$arr['tags']}</span></span>"."<br />";
                 }
         }
         
