@@ -56,7 +56,7 @@ BODY;
 			
 			header("Location: main.php");
 		} else {
-			echo "<script> alert('Upload failed.')</script>";
+			echo "<script> alert('Upload failed. (".$iw->getError().")')</script>";
 		}
 	}
 ?>

@@ -67,5 +67,9 @@
 		function getConnection() {
 			return $this->db_connection;
 		}
+		
+		function getError() {
+			return $this->db_connection->error;
+		}
 	}
 ?>

@@ -29,7 +29,12 @@
                 if (!move_uploaded_file($tmpFileName, SITE_ROOT.$serverFileName))
                     return false;
                 else { //Successful upload, add to db
-                    $query = "insert into photos (user, date, tags, caption, id) values('$user', '$date', '$tags', '$caption', '$id.$ext')";
+                    //Input protection
+                    $escape_user = mysqli_real_escape_string($this->connector->getConnection(), $user);
+                    $escape_tags = mysqli_real_escape_string($this->connector->getConnection(), $tags);
+                    $escape_caption = mysqli_real_escape_string($this->connector->getConnection(), $caption);
+                    
+                    $query = "insert into photos (user, date, tags, caption, id) values('$escape_user', '$date', '$escape_tags', '$escape_caption', '$id.$ext')";
                     $this->connector->insert($query);
                     return $id.".".$ext;
                 }
@@ -53,6 +58,10 @@
                     return $id.".".$ext;
                 }
             }
+        }
+        
+        function getError() {
+            return $this->connector->getError();
         }
     }
 ?>
