@@ -9,7 +9,7 @@
 	
     if (isset($_POST["Submit"])) {
         if ( $_POST['password'] !== $_POST['vpassword']) {
-            echo "<script> alert('Whoops! Seems like your passwords don't match.')</script>";
+            echo "<script> alert('Whoops! Seems like your passwords do not match.'); </script>";
 			$name = $_POST['name'];
 			$email = $_POST['email'];
         } else {
