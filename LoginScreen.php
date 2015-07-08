@@ -30,7 +30,6 @@
 		  $warning = "Wrong password!";
 		}
 	 }
-	 
   }
 ?>
 

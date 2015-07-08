@@ -1,24 +1,32 @@
 <?php
     /*************************************************************************/
-   // include_once("dbLogin.php");
-    //include_once("sqlconnector.php");
+    include_once("dbLogin.php");
+    include_once("sqlconnector.php");
 	echo "<link rel='stylesheet' href='signUpComplete.css' type='text/css' />";
 	session_start();
-    error_reporting(0);
+    //error_reporting(0);
 	
     $body = "";
-    
-    $UserName = $_SESSION['name'];
-	$UserEmail = $_SESSION['email'];
-    $UserProPic = $_FILES["photo"]["name"];
-    $UserPassword = crypt($_SESSION['password'], 'st');
+    $host = "localhost";
+	$dbuser = "user";
+	$dbpassword = "user";
+	$database = "calendapp";
+	$table = "users";
+	$connector = new SQLConnector(new Credentials($host, $dbuser, $dbpassword, $database));
+	$connector->connect();
 	
+    $UserName = $_SESSION['username'];
+	$UserEmail = $_SESSION['email'];
+	
+	$UserProPic = $connector->retrieve("select profilepic from users where email='$UserEmail'")['profilepic'];
+
 	if ($UserProPic == null) {
 		$UserProPic = 'default.jpg';
+	} else {
+		$UserProPic = "profilepics/".$UserProPic;
 	}
 	
     if (isset($_POST["Return"])) {
-     
         header('Location: main.php');
     
     }
@@ -47,8 +55,8 @@
              
 				<form action='$scriptName' method='post' id='form'>
 				    <h2>You can now start posting and uploading pictures of the events around campus!</h2>
-					<h3> To begin just go to the home page and click on the 'Post' button or if<br>
-					you feel like browsing just look thorugh the calendar</h3>
+					<h3> To begin just go to the home page and click on the 'Post' button.<br /> If
+					you feel like browsing, just look thorugh the calendar.</h3>
 					<p>
 						Username: $UserName</br><br>
 						Email: $UserEmail</br><br>

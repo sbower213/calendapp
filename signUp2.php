@@ -1,22 +1,40 @@
 <?php
-    
+    require_once("dbLogin.php");
+	require_once("sqlconnector.php");
+	require_once("uploadimage.php");
     echo "<link rel='stylesheet' href='signUp.css' type='text/css' />";
    
     session_start();
-    error_reporting(0);
+    //error_reporting(0);
 	
     if (isset($_POST["Submit"])) {
         if ( $_POST['password'] !== $_POST['vpassword']) {
             echo "Whoops! Seems like your passwords don't match.";
         } else {
-		$_SESSION['name'] = trim($_POST['name']);
-		$_SESSION['email'] = trim($_POST['email']);
-		$_SESSION['password'] = $_POST['password'];
-        
-        $file_name = $_FILES['photo']['name'];
-        move_uploaded_file($file_tmp,"img/".$file_name);
-        
-        header('Location: signUpComplete.php');
+			$host = "localhost";
+			$dbuser = "user";
+			$dbpassword = "user";
+			$database = "calendapp";
+			$table = "users";
+			$connector = new SQLConnector(new Credentials($host, $dbuser, $dbpassword, $database));
+			$connector->connect();
+
+			$w = new ImageWorker(null); //no sql here
+			$id = $w->uploadToDir("/profilepics", "photo"); //Upload profile picture
+
+			$username = trim($_POST["name"]);
+			$email = trim($_POST['email']);
+			$cryptpw = password_hash($_POST['password'], PASSWORD_DEFAULT);
+			$date = date(DATE_ISO8601);
+			$sqlQuery = "insert into users values('$username', '$cryptpw', '$id', '$date', '$email')";
+			
+			if ($connector->insert($sqlQuery)) {
+				$_SESSION['loggedIn'] = true; //Stay logged in
+				$_SESSION['username'] = $username;
+				$_SESSION['email'] = $email;
+			}
+
+			header('Location: signUpComplete.php');
         }
         
     } else {

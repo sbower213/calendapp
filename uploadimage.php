@@ -31,7 +31,26 @@
                 else { //Successful upload, add to db
                     $query = "insert into photos (user, date, tags, caption, id) values('$user', '$date', '$tags', '$caption', '$id')";
                     $this->connector->insert($query);
-                    return $id;
+                    return $id.".".$ext;
+                }
+            }
+        }
+        
+        function uploadToDir($dir, $formName) {
+            define ('SITE_ROOT', realpath(dirname(__FILE__)));
+            $tmpFileName = $_FILES[$formName]['tmp_name'];
+            $date = date(DATE_ISO8601);
+            $id = hash("md5", $tmpFileName.$date);
+            $ext = pathinfo($_FILES[$formName]['name'], PATHINFO_EXTENSION);
+            $serverFileName = $dir."/".$id.".".$ext;
+            
+            if (!is_uploaded_file($tmpFileName)) {
+                return false;
+            } else {
+                if (!move_uploaded_file($tmpFileName, SITE_ROOT.$serverFileName))
+                    return false;
+                else { //Successful upload
+                    return $id.".".$ext;
                 }
             }
         }
