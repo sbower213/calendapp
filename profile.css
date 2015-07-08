@@ -39,7 +39,7 @@ body {
     margin-top: 20px;
 }
 #propic {
-    
+    max-height: 400px
 }
 h1 {
     float: right;

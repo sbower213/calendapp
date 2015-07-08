@@ -1,12 +1,10 @@
 <?php
-    /*************************************************************************/
     include_once("dbLogin.php");
     include_once("sqlconnector.php");
 	echo "<link rel='stylesheet' href='signUpComplete.css' type='text/css' />";
 	session_start();
     error_reporting(0);
 	
-    $body = "";
     $host = "localhost";
 	$dbuser = "user";
 	$dbpassword = "user";
@@ -30,13 +28,7 @@
         header('Location: main.php');
     
     }
-	//$cred = new Credentials("localhost", "user", "user", "calendapp"); //update these to real values once we make the db
-    //$connection = new SQLConnector($cred);
-    //$connection->connect();
-   
-    //$query = "insert into users (name, email, propic, password) values ('$UserName', '$UserEmail','$UserProPic', '$UserPassword')");				
-	//$this->connector->insert($query);
-	
+
    /*************************************************************************/
     $scriptName = $_SERVER["PHP_SELF"];
     
@@ -72,6 +64,4 @@
                 </div>
 			</body>
 		</html>";
-	
-
 ?>

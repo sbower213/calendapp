@@ -24,6 +24,7 @@
 		  $warning = "Logged in!";
 		  $_SESSION['loggedIn'] = true; //Stay logged in
 		  $_SESSION['username'] = $username;
+		  $_SESSION['email'] = $connector->retrieve("select email from users where name='$username'")['email'];
 		  
 		  header("Location: main.php");
 		} else {

@@ -5,11 +5,13 @@
     echo "<link rel='stylesheet' href='signUp.css' type='text/css' />";
    
     session_start();
-    error_reporting(0);
+    //error_reporting(0);
 	
     if (isset($_POST["Submit"])) {
         if ( $_POST['password'] !== $_POST['vpassword']) {
-            echo "Whoops! Seems like your passwords don't match.";
+            echo "<script> alert('Whoops! Seems like your passwords don't match.')</script>";
+			$name = $_POST['name'];
+			$email = $_POST['email'];
         } else {
 			$host = "localhost";
 			$dbuser = "user";
@@ -40,8 +42,6 @@
     } else {
 		$name = "";
 		$email = "";
-        $password = "";
-        $vpassword = ""; 
         $photo = 'img/default.jpg';
 		
     }
@@ -80,10 +80,10 @@
             <img src= '$photo' alt='photo' width='200' height='200'/></br>
           </p>
           <p>
-            Password: <br><input type='password' name='password' value='$password' required/>
+            Password: <br><input type='password' name='password' required/>
 		  </p>
           <p>
-            Verify Password: <br><input type='password' name='vpassword' value='$vpassword' required/>
+            Verify Password: <br><input type='password' name='vpassword' required/>
 		  </p>       
 		  <p>
             <input type='submit' name='Submit' value = 'Join!' id='join'/>
@@ -93,5 +93,4 @@
 	</body>
 
     </html>";
-
 ?>
