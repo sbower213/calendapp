@@ -29,5 +29,5 @@
         </script>
 HEREDOC;
 
-    echo generatePage($body, "View Image");
+    echo generatePage($body, "View Image", "<link rel='stylesheet' href='imgshow.css' type='text/css' />");
 ?>

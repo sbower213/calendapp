@@ -1,0 +1,12 @@
+html {
+    background-image: url('img/umdbg.jpg');
+    background-size: 2000px;
+    font-family:  'Open Sans', Arial, Helvetice Neue, sans-serif;
+    bottom: auto;
+}
+
+body {
+    background-color: rgba(26, 26, 26, .8);
+    color: white;
+    font-weight: lighter;
+}
