@@ -5,9 +5,11 @@ body {
    color: white;
 }
 .container {
-    width: 1950px;
-    height: 500px;
+    width: 80em;
     text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
 }
 .container img {
     width: 100%;
@@ -18,6 +20,9 @@ header {
 }
 .form {
     text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
 }
 strong {
    color: white;
@@ -42,4 +47,11 @@ input {
    width: 170px;
    color: white;
    border-color: #007AA3;
+}
+
+p{
+   text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
 }
