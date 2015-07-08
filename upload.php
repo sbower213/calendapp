@@ -5,6 +5,12 @@
     
 	session_start();
 	
+	if (isset($_SESSION['username'])) {
+		$user = $_SESSION['username'];
+	} else {
+		$user = "NO_USER";
+	}
+	
     $body =<<<BODY
 	 <html>
 	   <head>
@@ -17,9 +23,9 @@
                 <img src='img/upload.png' alt='Upload' id='subtitle'>
             </div>
 			<form action="upload.php" enctype="multipart/form-data" method="post" id='form'>
-			<h3> Select an image that you would lke to upload. Include a caption and at least two tags</h3>
+			<h3> Select an image that you would lke to upload. Include a caption and at least two tags.</h3>
 				 <p>
-					Enter image to upload: &nbsp;
+					Enter image to upload (as user $user): &nbsp;
 					<input type="file" name="filename" required="required" /><br />
 					Caption: &nbsp; <input type="text" required="required" name="caption" /><br />
 					Tags (comma separated): &nbsp; <input type="text" id='tags' name="tags" required="required" /><br />

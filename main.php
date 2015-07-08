@@ -8,6 +8,7 @@
     echo "<link rel='stylesheet' href='main.css' type='text/css' />";
     echo "<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>";
     echo "<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>";
+    
     if(isset($_POST['submitButton'])){
         
         $month = $_POST['month'];
@@ -33,6 +34,9 @@
     $query = "select profilepic from users where name=\"$user\""; //this kind of assumes user is the primary key, could rework with email
     $profpic = "profilepics/".$connection->retrieve($query)['profilepic'];
     
+    $numMonth = date('m', strtotime("$month"));
+    $pics = $connection->retrieve("select * from photos where year(date) = '$year' and month(date) = '$numMonth'"); //Gets relevant pictures
+    //print_r($pics); debugging
     $body =<<<HEREDOC
         
         <a href="main.php"> <img src="img/CalendAppLogo.png" width="256" height="73" alt="CalendApp" id="logo"> </a>
@@ -112,7 +116,7 @@ HEREDOC;
                    }
                    
                    $counter++;
-                   $body.="<td id=$i>".$i."</td>";
+                   $body.="<td id=$i>".$i." ".getPics($pics, $i)."</td>"; //Day added here
                    
                 }
                 
@@ -137,5 +141,30 @@ HEREDOC;
             }
         </script>
 HEREDOC;
+
     echo generatePage($body, "Calendapp");
+    
+    function getPics($arr, $dayOfMonth) {
+        if (empty($arr)) {//No pictures for this month
+            return "";
+        }
+        
+        $toReturn = "";
+        
+        if (!isset($arr['user'])) {
+            foreach ($arr as $entry) {
+                if (date('j', strtotime($entry['date'])) == $dayOfMonth) {
+                    $toReturn .= "<img src='images/{$entry['id']}' alt='{$entry['id']}' width='20' height='20'>
+                        by {$entry['user']}"."<br />";
+                }
+            }
+        } else {
+            if (date('j', strtotime($arr['date'])) == $dayOfMonth) {
+                    $toReturn .= "<img src='images/{$arr['id']}' alt='{$arr['id']}' width='40' height='40'>
+                        by {$arr['user']}"."<br />";
+                }
+        }
+        
+        return $toReturn;
+    }
 ?>
