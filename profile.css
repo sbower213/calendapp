@@ -1,0 +1,52 @@
+html {
+    background-image: url('img/umdbg.jpg');
+    background-size: 2000px;
+    font-family:  'Open Sans', Arial, Helvetice Neue, sans-serif;
+    bottom: auto;
+}
+
+body {
+    margin: -10px;
+    background-color: #1A1A1A;
+    opacity: 0.8;
+    color: white;
+    font-weight: lighter;
+}
+#form {
+    margin: 30px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-top: double;
+    border-color: #194775;
+    font-weight: lighter;
+    padding: 20px;
+    margin-left: 40px;
+    margin-top: -850px;
+    line-height: 5px;
+}
+#subtitle {
+    width: 400px;
+    height: 1000px;
+    text-align: center;
+    margin-left: 10px;
+    margin-bottom: -50px;
+}
+#subtitle img {
+    width: 100%;
+    height: auto;
+}
+#logo {
+    margin-top: 20px;
+}
+#propic {
+    
+}
+h1 {
+    float: right;
+    margin-right:1225px;
+    margin-top: -425px;
+    font-weight: lighter; 
+}
+p {
+    margin-top: 10px;
+}
